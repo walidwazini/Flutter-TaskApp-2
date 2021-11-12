@@ -14,28 +14,64 @@ class TaskForm extends StatelessWidget {
     required this.onChangedDescription,
     required this.onChangedTitle,
     required this.onSavedTask,
-});
+  });
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(children: [
-        buildTitle(),
-      ],),
+      child: Column(
+        children: [
+          buildTitle(),
+          SizedBox(
+            height: 10,
+          ),
+          buildDescription(),
+          SizedBox(
+            height: 32,
+          ),
+          buildSavedButton()
+        ],
+      ),
     );
   }
 
-  Widget buildTitle() => TextFormField(
-    initialValue: title,
-    validator: (title){
-      if (title!.isEmpty) {
-        return 'Title cannot be empty';
-      }
-    },
-    decoration: InputDecoration(
-      border: UnderlineInputBorder(),
-      labelText: 'Title',
-    ),
-  );
+  Widget buildTitle() =>
+      TextFormField(
+        maxLines: 1,
+        initialValue: title,
+        onChanged: onChangedTitle,
+        validator: (title) {
+          if (title!.isEmpty) {
+            return 'Title cannot be empty';
+          }
+          return null;
+        },
+        decoration: InputDecoration(
+          border: UnderlineInputBorder(),
+          labelText: 'Title',
+        ),
+      );
 
+  Widget buildDescription() =>
+      TextFormField(
+        maxLines: 3,
+        initialValue: description,
+        onChanged: onChangedDescription,
+        decoration: InputDecoration(
+          border: UnderlineInputBorder(),
+          labelText: 'Description',
+        ),
+      );
+
+  Widget buildSavedButton() =>
+      SizedBox(
+        width: double.infinity, height: 40,
+        child: ElevatedButton(
+          onPressed: onSavedTask,
+          child: Text('Save'),
+          style:ElevatedButton.styleFrom(
+            primary: Colors.black,
+          ),
+        ),
+      );
 }
