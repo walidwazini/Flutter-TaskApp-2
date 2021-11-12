@@ -26,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Theme.of(context).primaryColor,
-        unselectedItemColor: Color(0xffc11430).withOpacity(0.6),
+        unselectedItemColor: Color(0xff660000),
         selectedItemColor: Colors.white,
         currentIndex: selectedIndex,
         onTap: (selection) => setState(() {
@@ -38,11 +38,26 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'Pending'
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.done),
+              icon: Icon(Icons.done, size: 28,),
               label: 'Completed'
           )
         ],
       ),
+      body: tabs[selectedIndex],
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.black,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16)
+        ),
+        child: Icon(Icons.add),
+        onPressed: () => showDialog(
+          context: context,
+          builder: (BuildContext context) => {
+
+          },
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }
