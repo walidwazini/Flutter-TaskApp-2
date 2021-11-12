@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../main.dart';
+import '../widgets/AddTask.dart';
 
 class HomeScreen extends StatefulWidget {
   //const HomeScreen({Key? key}) : super(key: key);
@@ -52,9 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Icon(Icons.add),
         onPressed: () => showDialog(
           context: context,
-          builder: (BuildContext context) => {
-
-          },
+          builder: (BuildContext context) => AddTask(),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
