@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../main.dart';
 import '../widgets/AddTask.dart';
+import '../widgets/TaskList.dart ';
 
 class HomeScreen extends StatefulWidget {
   //const HomeScreen({Key? key}) : super(key: key);
@@ -17,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final tabs = [
-      Container(), Container()
+      TaskList()
     ];
 
     return Scaffold(

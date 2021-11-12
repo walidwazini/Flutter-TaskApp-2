@@ -3,14 +3,14 @@ class TaskField {
 
 }
 
-class Task {
+class TaskModel {
   DateTime createdTime;
   String title;
   String id;
   String description;
   bool isDone;
 
-  Task({
+  TaskModel({
     required this.createdTime,
     required this.title,
     required this.id,
