@@ -10,6 +10,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int selectedIndex = 0;
+
+
   @override
   Widget build(BuildContext context) {
     final tabs = [
@@ -25,7 +28,20 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Theme.of(context).primaryColor,
         unselectedItemColor: Color(0xffc11430).withOpacity(0.6),
         selectedItemColor: Colors.white,
-        items: [],
+        currentIndex: selectedIndex,
+        onTap: (selection) => setState(() {
+          selectedIndex = selection;
+        }),
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.fact_check_outlined),
+            label: 'Pending'
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.done),
+              label: 'Completed'
+          )
+        ],
       ),
     );
   }
