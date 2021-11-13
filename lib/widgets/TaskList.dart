@@ -11,17 +11,21 @@ class TaskList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<TasksProvider>(context);
-    final  tasks =  provider.tasksGetter;
+    final tasks = provider.tasksGetter;
 
-    return ListView.separated(
-      separatorBuilder: (context, index) => Container(height: 8,),
-      physics: BouncingScrollPhysics(),
-        padding: EdgeInsets.all(12),
-        itemCount: tasks.length,
-        itemBuilder: (context, index) {
-          final task = tasks[index];
-            return Task(task: task);
-        },
-    );
+    return tasks.isEmpty
+        ? Center(child: Text('No task ', style: TextStyle(fontSize: 20)))
+        : ListView.separated(
+            separatorBuilder: (context, index) => Container(
+              height: 8,
+            ),
+            physics: BouncingScrollPhysics(),
+            padding: EdgeInsets.all(12),
+            itemCount: tasks.length,
+            itemBuilder: (context, index) {
+              final task = tasks[index];
+              return Task(task: task);
+            },
+          );
   }
 }

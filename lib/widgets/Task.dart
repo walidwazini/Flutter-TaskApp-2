@@ -10,43 +10,44 @@ class Task extends StatelessWidget {
   Task({required this.task});
 
   @override
-  Widget build(BuildContext context) => Slidable(
-    key: Key(task.id),
-    startActionPane: ActionPane(
-      motion: DrawerMotion(),
-      children: [
-        SlidableAction(
-          onPressed: (_){
-            print(task.id);
-          },
-          backgroundColor: Color(0xFF38E248),
-          foregroundColor: Colors.white,
-          icon: Icons.edit,
-          label: 'Edit',
+  Widget build(BuildContext context) => ClipRRect(
+    borderRadius: BorderRadius.circular(10),
+    child: Slidable(
+      key: Key(task.id),
+      startActionPane: ActionPane(
+        motion: DrawerMotion(),
+        children: [
+          SlidableAction(
+            onPressed: (_){} ,
+            backgroundColor: Color(0xFF38E248),
+            foregroundColor: Colors.white,
+            icon: Icons.edit,
+            label: 'Edit',
+          ),
+          SlidableAction(
+            onPressed: (_){},
+            backgroundColor: Color(0xFF21B7CA),
+            foregroundColor: Colors.white,
+            icon: Icons.share,
+            label: 'Share',
+          ),
+        ],
+      ),
+          endActionPane: ActionPane(
+            motion: ScrollMotion(),
+            children: [
+              SlidableAction(
+                onPressed: (_){},
+                backgroundColor: Color(0xFFFE4A49),
+                foregroundColor: Colors.white,
+                icon: Icons.delete,
+                label: 'Delete',
+              )
+            ],
+          ) ,
+          child: buildTask(context),
         ),
-        SlidableAction(
-          onPressed: (_){},
-          backgroundColor: Color(0xFF21B7CA),
-          foregroundColor: Colors.white,
-          icon: Icons.share,
-          label: 'Share',
-        ),
-      ],
-    ),
-        endActionPane: ActionPane(
-          motion: ScrollMotion(),
-          children: [
-            SlidableAction(
-              onPressed: (_){},
-              backgroundColor: Color(0xFFFE4A49),
-              foregroundColor: Colors.white,
-              icon: Icons.delete,
-              label: 'Delete',
-            )
-          ],
-        ) ,
-        child: buildTask(context),
-      );
+  );
 
   Widget buildTask(BuildContext context) {
     return Container(
