@@ -11,12 +11,14 @@ class Task extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Slidable(
-    key: Key(task.id!),
+    key: Key(task.id),
     startActionPane: ActionPane(
       motion: DrawerMotion(),
       children: [
         SlidableAction(
-          onPressed: (_){},
+          onPressed: (_){
+            print(task.id);
+          },
           backgroundColor: Color(0xFF38E248),
           foregroundColor: Colors.white,
           icon: Icons.edit,
@@ -45,7 +47,6 @@ class Task extends StatelessWidget {
         ) ,
         child: buildTask(context),
       );
-
 
   Widget buildTask(BuildContext context) {
     return Container(

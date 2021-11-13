@@ -1,20 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:task_app_2/model/TaskModel.dart';
 
+import 'package:task_app_2/model/TaskModel.dart';
 import '../widgets/Task.dart';
+import '../provider/TasksProvider.dart';
 
 class TaskList extends StatelessWidget {
   //const TaskList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Task(
-      task: TaskModel(
-        createdTime: DateTime.now(),
-        title: 'Pegi Bengkel',
-        id: 1.toString(),
-      ),
+    final provider = Provider.of<TasksProvider>(context);
+    final  tasks =  provider.tasksGetter;
+
+    return ListView.separated(
+      separatorBuilder: (context, index) => Container(height: 8,),
+      physics: BouncingScrollPhysics(),
+        padding: EdgeInsets.all(12),
+        itemCount: tasks.length,
+        itemBuilder: (context, index) {
+          final task = tasks[index];
+            return Task(task: task);
+        },
     );
   }
 }
