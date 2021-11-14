@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
+import 'package:task_app_2/widgets/AddTask.dart';
 
 import '../provider/TasksProvider.dart';
 import '../model/TaskModel.dart';
@@ -21,7 +22,9 @@ class Task extends StatelessWidget {
             motion: DrawerMotion(),
             children: [
               SlidableAction(
-                onPressed: (_) {},
+                onPressed: (_) {
+                  //deleteTaskHandler(context, task);
+                },
                 backgroundColor: Color(0xFF38E248),
                 foregroundColor: Colors.white,
                 icon: Icons.edit,
@@ -69,7 +72,7 @@ class Task extends StatelessWidget {
 
               Utils.showSnackBar(context,
                   isDone! ? 'One task completed.' : 'Task marked as incomplete',
-                  Colors.green,
+                  isDone ? Colors.green : Colors.black26,
               );
             },
           ),
@@ -108,4 +111,8 @@ class Task extends StatelessWidget {
 
     Utils.showSnackBar(ctx, 'One task DELETED', Colors.red);
   }
+
+  void editTaskHandler(BuildContext ctx, TaskModel task) => Navigator.of(ctx).push(
+
+  );
 }

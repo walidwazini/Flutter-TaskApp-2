@@ -21,6 +21,8 @@ class TasksProvider extends ChangeNotifier {
   ];
 
   List<TaskModel> get tasksGetter => _tasks.where((task) => (task.isDone == false)).toList();
+  List<TaskModel> get completedGetter => _tasks.where((taskGiven) => (taskGiven.isDone == true)).toList( ) ;
+
 
   void addTask(TaskModel task){
     _tasks.add(task);

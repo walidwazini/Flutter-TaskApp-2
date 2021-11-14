@@ -4,6 +4,7 @@ import 'dart:math';
 import '../main.dart';
 import '../widgets/AddTask.dart';
 import '../widgets/TaskList.dart ';
+import '../widgets/CompletedList.dart';
 
 class HomeScreen extends StatefulWidget {
   //const HomeScreen({Key? key}) : super(key: key);
@@ -20,14 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final tabs = [
       TaskList(),
-      SizedBox( width: 200, height: 50,
-        child: ElevatedButton(
-          onPressed:(){
-            print(Random().nextInt(1000));
-          } ,
-          child: Text('Press'),
-        ),
-      )
+      CompletedList()
     ];
 
     return Scaffold(
