@@ -41,4 +41,10 @@ class TasksProvider extends ChangeNotifier {
     return task.isDone;
   }
 
+  void updateTask(TaskModel taskEdit, String newTitle, String newDescription){
+    taskEdit.title = newTitle;
+    taskEdit.description = newDescription;
+    notifyListeners();
+  }
+
 }
