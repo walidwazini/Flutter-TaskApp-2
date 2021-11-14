@@ -32,4 +32,11 @@ class TasksProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  bool? toggleTaskStatus(TaskModel task){
+    task.isDone = !task.isDone;
+    notifyListeners();
+
+    return task.isDone;
+  }
+
 }

@@ -68,7 +68,7 @@ class Task extends StatelessWidget {
               final isDone = provider.toggleTaskStatus(task);
 
               Utils.showSnackBar(context,
-                  isDone ? 'One task completed.' : 'Task marked as incomplete',
+                  isDone! ? 'One task completed.' : 'Task marked as incomplete',
                   Colors.green,
               );
             },
