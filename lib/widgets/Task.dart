@@ -6,6 +6,7 @@ import 'package:task_app_2/widgets/AddTask.dart';
 import '../provider/TasksProvider.dart';
 import '../model/TaskModel.dart';
 import '../Utils.dart';
+import '../screens/EditTask.dart';
 
 class Task extends StatelessWidget {
   //const Task({Key? key}) : super(key: key);
@@ -23,7 +24,7 @@ class Task extends StatelessWidget {
             children: [
               SlidableAction(
                 onPressed: (_) {
-                  //deleteTaskHandler(context, task);
+                  editTaskHandler(context, task);
                 },
                 backgroundColor: Color(0xFF38E248),
                 foregroundColor: Colors.white,
@@ -113,6 +114,6 @@ class Task extends StatelessWidget {
   }
 
   void editTaskHandler(BuildContext ctx, TaskModel task) => Navigator.of(ctx).push(
-
+    MaterialPageRoute(builder: (ctx) => EditTask(taskToEdit: task,))
   );
 }
