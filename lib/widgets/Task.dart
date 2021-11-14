@@ -13,8 +13,7 @@ class Task extends StatelessWidget {
   Task({required this.task});
 
   @override
-  Widget build(BuildContext context) =>
-      ClipRRect(
+  Widget build(BuildContext context) => ClipRRect(
         borderRadius: BorderRadius.circular(10),
         child: Slidable(
           key: Key(task.id),
@@ -64,33 +63,40 @@ class Task extends StatelessWidget {
             checkColor: Colors.white,
             value: task.isDone,
             onChanged: (_) {
-              //final provider = Provider.of<TasksProvider>(context,listen: false);
+              final provider =
+                  Provider.of<TasksProvider>(context, listen: false);
+              final isDone = provider.toggleTaskStatus(task);
+
+              Utils.showSnackBar(context,
+                  isDone ? 'One task completed.' : 'Task marked as incomplete',
+                  Colors.green,
+              );
             },
           ),
-          SizedBox(width: 20,),
+          SizedBox(
+            width: 20,
+          ),
           Expanded(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    task.title,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Theme
-                          .of(context)
-                          .primaryColor,
-                      fontSize: 22,
-                    ),
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                task.title,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).primaryColor,
+                  fontSize: 22,
+                ),
+              ),
+              if (task.description.isNotEmpty)
+                Container(
+                  child: Text(
+                    task.description,
+                    style: TextStyle(fontSize: 18, height: 1.5),
                   ),
-                  if (task.description.isNotEmpty)
-                    Container(
-                      child: Text(
-                        task.description,
-                        style: TextStyle(fontSize: 18, height: 1.5),
-                      ),
-                    )
-                ],
-              ))
+                )
+            ],
+          ))
         ],
       ),
     );
@@ -100,6 +106,6 @@ class Task extends StatelessWidget {
     final provider = Provider.of<TasksProvider>(ctx, listen: false);
     provider.removeTask(task);
 
-    Utils.showSnackBar(ctx,'One task DELETED');
+    Utils.showSnackBar(ctx, 'One task DELETED', Colors.red);
   }
 }
