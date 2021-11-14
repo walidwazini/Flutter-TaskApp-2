@@ -33,7 +33,18 @@ class _EditTaskState extends State<EditTask> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: (){
+              final provider = Provider.of<TasksProvider>(context, listen: false);
+              provider.removeTask(widget.taskToEdit);
+              Navigator.of(context).pop();
+            },
+            icon: Icon(Icons.delete),
+          )
+        ],
+      ),
       body: Padding(
         padding: EdgeInsets.all(16),
         child: Form(
@@ -55,10 +66,10 @@ class _EditTaskState extends State<EditTask> {
     final isValid = _formKey.currentState!.validate();
 
     if (!isValid) {
-      return ;
+      return;
     } else {
       final provider = Provider.of<TasksProvider>(context, listen: false);
-      provider.updateTask(widget.taskToEdit,title!,description!);
+      provider.updateTask(widget.taskToEdit, title!, description!);
 
       Navigator.of(context).pop();
     }
