@@ -1,9 +1,10 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:task_app_2/model/TaskModel.dart';
+import 'package:provider/provider.dart';
 
+import '../model/TaskModel.dart';
 import './TaskForm.dart';
+import '../provider/TasksProvider.dart';
 
 class AddTask extends StatefulWidget {
   //const AddTask({Key? key}) : super(key: key);
@@ -60,6 +61,11 @@ class _AddTaskState extends State<AddTask> {
         title: title,
         description: description,
       );
+
+      final provider = Provider.of<TasksProvider>(context, listen: false);
+      provider.addTask(task);
+
+      Navigator.of(context).pop();
     }
   }
 }

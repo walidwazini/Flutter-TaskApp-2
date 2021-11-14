@@ -21,4 +21,15 @@ class TasksProvider extends ChangeNotifier {
   ];
 
   List<TaskModel> get tasksGetter => _tasks.where((task) => (task.isDone == false)).toList();
+
+  void addTask(TaskModel task){
+    _tasks.add(task);
+    notifyListeners();
+  }
+
+  void removeTask(TaskModel task){
+    _tasks.remove(task);
+    notifyListeners();
+  }
+
 }
