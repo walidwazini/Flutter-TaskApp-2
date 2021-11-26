@@ -1,3 +1,5 @@
+import 'package:task_app_2/Utils.dart';
+
 class TaskField {
   static const createdTime = 'createdTime';
 
@@ -5,7 +7,7 @@ class TaskField {
 
 class TaskModel {
   String id;
-  DateTime createdTime;
+  DateTime? createdTime;
   String title;
   String description;
   bool isDone;
@@ -17,4 +19,21 @@ class TaskModel {
     this.description = '',
     this.isDone = false
 });
+
+  static TaskModel fromJson(Map<String,dynamic> json ) => TaskModel(
+    createdTime: Utils.toDateTime(json['createdTime']),
+    title: json['title'],
+    description: json['description'],
+    id: json['id'],
+    isDone: json['isDone'],
+  );
+
+  Map<String, dynamic> toJson() => {
+    'createdTime' : Utils.fromDateTimeToJson(createdTime),
+    'title': title,
+    'description' : description,
+    'id' : id,
+    'isDone' : isDone,
+  };
+
 }

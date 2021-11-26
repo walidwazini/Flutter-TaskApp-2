@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
-import '../widgets/Task.dart';
 import '../model/TaskModel.dart';
 
 class TasksProvider extends ChangeNotifier {

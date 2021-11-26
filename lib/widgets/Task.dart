@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
-import 'package:task_app_2/widgets/AddTask.dart';
 
 import '../provider/TasksProvider.dart';
 import '../model/TaskModel.dart';

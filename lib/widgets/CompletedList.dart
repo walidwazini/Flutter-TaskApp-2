@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:task_app_2/provider/TasksProvider.dart';
-import '../model/TaskModel.dart';
 import '../widgets/Task.dart';
 
 class CompletedList extends StatelessWidget {
