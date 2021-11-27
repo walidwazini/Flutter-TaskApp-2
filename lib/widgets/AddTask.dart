@@ -63,7 +63,7 @@ class _AddTaskState extends State<AddTask> {
       );
 
       final provider = Provider.of<TasksProvider>(context, listen: false);
-      provider.addTask(task);
+      provider.firestoreAddTask(task);
 
       Navigator.of(context).pop();
     }

@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:task_app_2/api/Firebase_API.dart';
+import 'package:task_app_2/model/TaskModel.dart';
+import 'package:task_app_2/provider/TasksProvider.dart';
 
 import '../main.dart';
 import '../widgets/AddTask.dart';
@@ -14,7 +18,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int selectedIndex = 0;
-
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +50,24 @@ class _HomeScreenState extends State<HomeScreen> {
           )
         ],
       ),
-      body: tabs[selectedIndex],
+      body: StreamBuilder<List<TaskModel>>(
+        stream: FirebaseApi.readTasks(),
+        builder: (context, snapshot){
+          switch (snapshot.connectionState){
+            case ConnectionState.waiting:
+              return Center(child: CircularProgressIndicator());
+            default:
+              if (snapshot.hasError){
+                return Center(child: Text('Something went wrong!'));
+              } else {
+                final tasks = snapshot.data;
+                final provider = Provider.of<TasksProvider>(context);
+                provider.setLocalTasks(tasks!);
+                return tabs[selectedIndex];
+              }
+          }
+        },
+      ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.black,
         shape: RoundedRectangleBorder(
