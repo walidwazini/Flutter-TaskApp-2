@@ -6,9 +6,7 @@ import '../model/TaskModel.dart';
 
 class TasksProvider extends ChangeNotifier {
   var randomId = Random();
-  List<TaskModel> _tasks = [
-    //TaskModel(),
-  ];
+  List<TaskModel> _tasks = [];
 
   List<TaskModel> get tasksGetter =>
       _tasks.where((task) => (task.isDone == false)).toList();

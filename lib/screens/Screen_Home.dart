@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:task_app_2/api/Firebase_API.dart';
 import 'package:task_app_2/model/TaskModel.dart';
 import 'package:task_app_2/provider/TasksProvider.dart';
@@ -8,6 +9,8 @@ import '../main.dart';
 import '../widgets/AddTask.dart';
 import '../widgets/TaskList.dart ';
 import '../widgets/CompletedList.dart';
+
+final _firestore = FirebaseFirestore.instance;
 
 class HomeScreen extends StatefulWidget {
   //const HomeScreen({Key? key}) : super(key: key);
@@ -51,7 +54,8 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       body: StreamBuilder<List<TaskModel>>(
-        stream: FirebaseApi.readTasks(),
+         stream: FirebaseApi.readTasks(),
+        //stream: _firestore.collection('tasks').snapshots() as <List<TaskModel>,
         builder: (context, snapshot){
           switch (snapshot.connectionState){
             case ConnectionState.waiting:
@@ -63,8 +67,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 final tasks = snapshot.data;
                 final provider = Provider.of<TasksProvider>(context);
                 provider.setLocalTasks(tasks!);
-                return tabs[selectedIndex];
+
               }
+              return tabs[selectedIndex];
           }
         },
       ),

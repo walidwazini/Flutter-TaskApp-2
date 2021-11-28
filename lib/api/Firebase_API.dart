@@ -18,9 +18,9 @@ class FirebaseApi {
 
   static Stream<List<TaskModel>> readTasks() => FirebaseFirestore.instance
       .collection('todo')
-      .orderBy(TaskField.createdTime, descending: true)
+      .orderBy(TaskField.createdTime)
       .snapshots()
       // Transform query snapshot to TaskModel object
-      .transform(Utils.transformer(TaskModel.fromJson) as StreamTransformer<
-          QuerySnapshot<Map<String, dynamic>>, List<TaskModel>>);
+      // .transform(Utils.transformer(TaskModel.fromJson) as StreamTransformer<QuerySnapshot<Map<String, dynamic>>, List<TaskModel>>);
+      .transform(Utils.transformer(TaskModel.fromJson) as StreamTransformer<QuerySnapshot<Map<String, dynamic>>, List<TaskModel>>);
 }
